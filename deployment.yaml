@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admissioncontroller
+spec:
+  selector:
+    matchLabels:
+      app: admissioncontroller
+  template:
+    metadata:
+      labels:
+        app: admissioncontroller
+    spec:
+      containers:
+      - name: admissioncontroller
+        image: <Image>
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: admissioncontroller
+spec:
+  selector:
+    app: admissioncontroller
+  ports:
+  - port: 443
+    targetPort: 8080
+
