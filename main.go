@@ -115,6 +115,8 @@ func openLogFile(path string) (*os.File, error) {
 }
 
 func main() {
+	fmt.Println("Running admission controller")
+
 	// Create log file
 	file, err := openLogFile("./mylog.log")
 	if err != nil {
